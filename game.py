@@ -15,8 +15,6 @@ basey=screenheight * 0.75
 game_images = {}
 
 
-
-
 def welcomeScreen():
     """
  It shows welcome images on the screen
@@ -40,18 +38,11 @@ def welcomeScreen():
             # if the user doesn't click any button
             else:
                 screen.blit(game_images['background'], (0, 0))
-
-
                 screen.blit(game_images['player'], (playerx, playery))
                 screen.blit(game_images['message'], (messagex, messagey))
                 screen.blit(game_images['base'], (basex, basey))
-           
-
-
-
                 pygame.display.update()
                 FPSCLOCK.tick(FPS)
-
 
 
 def mainGame():
@@ -63,28 +54,18 @@ def mainGame():
     # Create a pipe for blitting on the screen
     pipe1 = getRandomPipe()
 
-
     # my List of upper pipes
     upperPipes = [
         {'x': screenwidth+10, 'y': pipe1[0]['y']}
-
-
     ]
     # my List of lower pipes
     lowerPipes = [
         {'x': screenwidth+10, 'y': pipe1[1]['y']}
-
-
     ]
 
     pipevelocity = -5
-
     birdvelocity = -9
-
-
     gravity = 0.75
-
-
     playerFlapped = False  # It is true only when the bird is flapping
 
     while True:
@@ -96,7 +77,6 @@ def mainGame():
                 if playery > 0:
                     birdvelocity = -9
                     playerFlapped = True
-
 
         crashTest = isCollide(playerx, playery, upperPipes,
                               lowerPipes)  # This function will return true if the player is crashed
@@ -110,10 +90,6 @@ def mainGame():
             if pipeMidPos <= playerMidPos < pipeMidPos + 5:
                 score += 1
                 print(f"Your score is {score}")
-
-
-
-
 
         if  not playerFlapped:
             birdvelocity += gravity
@@ -160,9 +136,6 @@ def mainGame():
         FPSCLOCK.tick(FPS)
 
 
-
-
-
 def isCollide(playerx, playery, upperPipes, lowerPipes):
     if playery+game_images["player"].get_height() == basey  or playery < 0:
 
@@ -205,35 +178,27 @@ if __name__ == "__main__":
     FPSCLOCK = pygame.time.Clock()
     pygame.display.set_caption('Flappy Bird game')
     game_images['numbers'] = (
-        pygame.image.load('flappy bird/images/0.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/1.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/2.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/3.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/4.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/5.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/6.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/7.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/8.png').convert_alpha(),
-        pygame.image.load('flappy bird/images/9.png').convert_alpha(),
+        pygame.image.load('0.png').convert_alpha(),
+        pygame.image.load('1.png').convert_alpha(),
+        pygame.image.load('2.png').convert_alpha(),
+        pygame.image.load('3.png').convert_alpha(),
+        pygame.image.load('4.png').convert_alpha(),
+        pygame.image.load('5.png').convert_alpha(),
+        pygame.image.load('6.png').convert_alpha(),
+        pygame.image.load('7.png').convert_alpha(),
+        pygame.image.load('8.png').convert_alpha(),
+        pygame.image.load('9.png').convert_alpha(),
     )
 
-    game_images['message'] = pygame.image.load('flappy bird/images/message.png').convert_alpha()
-    game_images['base'] = pygame.image.load('flappy bird/images/base.png').convert_alpha()
-    game_images['pipe'] = (pygame.transform.rotate(pygame.image.load("flappy bird/images/pipe.png").convert_alpha(), 180),
-                            pygame.image.load("flappy bird/images/pipe.png").convert_alpha()
+    game_images['message'] = pygame.image.load('message.png').convert_alpha()
+    game_images['base'] = pygame.image.load('base.png').convert_alpha()
+    game_images['pipe'] = (pygame.transform.rotate(pygame.image.load("pipe.png").convert_alpha(), 180),
+                            pygame.image.load("pipe.png").convert_alpha()
                             )
 
-
-
-
-    game_images['background'] = pygame.image.load("flappy bird/images/background.png").convert()
-    game_images['player'] = pygame.image.load("flappy bird/images/bird.png").convert_alpha()
+    game_images['background'] = pygame.image.load("background.png").convert()
+    game_images['player'] = pygame.image.load("bird.png").convert_alpha()
 
     while True:
         welcomeScreen()  # Shows welcome screen to the user until he presses a button
         mainGame()
-
-
-
-
-
